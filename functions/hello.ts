@@ -5,5 +5,5 @@ const photoBucket = bucket('photos').for('reading');
 
 photoApi.get("/photo/:name", async (ctx) => {
     const { name } = ctx.req.params;
-    ctx.res.body = photoBucket.image(name).getDownloadUrl();
+    ctx.res.body = photoBucket.file(name).getDownloadUrl();
 });
