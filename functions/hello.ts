@@ -1,11 +1,9 @@
-import { api } from "@nitric/sdk";
+import { api, bucket } from "@nitric/sdk";
 
-const helloApi = api('main');
+const photoApi = api('main');
+const photoBucket = bucket('photos').for('reading');
 
-helloApi.get("/hello/:name", async (ctx) => {
+photoApi.get("/photo/:name", async (ctx) => {
     const { name } = ctx.req.params;
-
-    ctx.res.body = `Hello ${name}`;
-
-    return ctx;
+    ctx.res.body = photoBucket.image(name).getDownloadUrl();
 });
